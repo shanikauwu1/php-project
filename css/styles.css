@@ -1,0 +1,529 @@
+@charset "utf-8";
+
+/* ------ Fonts ------ */
+@import url("fonts.css");
+
+/* ------ Browser Resets ------ */
+@import url("normalize.css");
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* ------ Variables ------ */
+:root {
+  /* page specific colors */
+  /* page specific colors */
+  --main-color: rgb(96, 2, 2);
+  --main-color-transparent: rgba(96, 2, 2, 0.25);
+  --second-color: rgb(202, 162, 61);
+  --second-color-transparent: rgba(202, 162, 61, 0.25);
+
+  /* universal palette */
+  --dark-color: #242424; /* near-but-not black */
+  --light-color: rgb(245, 245, 245); /* not-quite white*/
+  --code-color: rgb(
+    233,
+    233,
+    233
+  ); /* make code examples stand out from block text */
+  --bad-color: rgb(85, 0, 0); /* red means 'it's time to panic!' */
+  --good-color: rgb(22, 75, 22); /* green means 'let's rock!' */
+
+  /* fonts */
+  --heading-font-face: "leaguespartan-bold-webfont";
+  --block-text-font-face: "fira_sansregular";
+}
+
+/* ------ HTML Element Selectors ------ */
+body {
+  margin: 0;
+  font-family: var(--block-text-font-face), "Verdana", sans-serif;
+  background: var(--dark-color);
+  background: linear-gradient(
+    to right,
+    var(--dark-color) 0%,
+    rgb(0, 0, 0) 20%,
+    rgb(0, 0, 0) 80%,
+    var(--dark-color) 100%
+  );
+  color: var(--dark-color);
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font-face), "Helvetica", sans-serif;
+  letter-spacing: 3px;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-shadow: 1px 1px 0px var(--second-color);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
+a {
+  font-weight: bold;
+  font-size: 1.15rem;
+  color: var(--main-color);
+  /* remove usual link underline */
+  text-decoration: none;
+  /* border-bottom to make underline */
+  border-bottom: solid 3px var(--second-color);
+}
+a:hover,
+a:focus {
+  border-bottom: solid 3px var(--main-color);
+  text-decoration: none;
+}
+a:active {
+  color: var(--main-color);
+}
+table,
+thead,
+tbody,
+td,
+th {
+  border: solid 1px var(--dark-color);
+}
+table {
+  border-collapse: collapse;
+  border: solid 1px var(--main-color);
+  margin: 10px;
+  box-shadow: 0px 0px 2px 2px var(--dark-color);
+}
+th {
+  background-color: var(--main-color);
+  color: var(--light-color);
+  padding: 5px 10px;
+  border: solid 1px var(--light-color);
+  border-bottom: double 3px var(--light-color);
+}
+tr {
+  background-color: var(--light-color);
+}
+tr:nth-child(2n) {
+  background-color: var(--second-color-transparent);
+}
+tr:nth-child(2n + 1) {
+  background-color: var(--code-color);
+}
+td {
+  padding: 2px 4px;
+}
+p,
+li {
+  line-height: 1.5rem;
+  font-size: 1.05rem;
+}
+ul,
+ol {
+  margin: 20px 0px;
+}
+blockquote {
+  margin: 20px;
+  background-color: var(--second-color-transparent);
+  border: solid 1px var(--main-color-transparent);
+  border-left: solid 7px var(--main-color);
+  padding: 10px;
+  border-radius: 10px/5px;
+  position: relative;
+}
+cite {
+  background-color: var(--main-color-transparent);
+  padding: 3px 8px;
+  border-radius: 10px/5px;
+  border: solid 1px var(--main-color-transparent);
+  border-width: 0px 0px 0px 3px;
+}
+blockquote p:before {
+  content: "\201C";
+  position: absolute;
+  top: 10px;
+  left: -15px;
+  font-size: 4em;
+  font-weight: bold;
+  color: var(--second-color);
+  text-shadow: 0px 0px 5px var(--main-color);
+}
+blockquote p:after {
+  content: "\201D";
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  font-size: 4em;
+  font-weight: bold;
+  color: var(--second-color);
+  text-shadow: 0px 0px 5px var(--main-color);
+}
+pre {
+  border: solid 3px var(--main-color);
+  border-radius: 7px;
+  padding: 3px;
+  background: url("../images/pre-background.png") no-repeat top right,
+    url("../images/grey-grid.png") repeat;
+  /* mobile friendly pre-formatted text may need to wrap */
+  white-space: pre-wrap; /*allow word wrap */
+  word-wrap: break-word; /*allow word break*/
+}
+code {
+  background-color: var(--code-color);
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 0px 5px;
+  border: dotted 1px var(--dark-color);
+}
+pre code {
+  /* 
+    remove the border and padding 
+    when showing code in pre tags
+    */
+  padding: 0px;
+  border: 0px;
+}
+header {
+  background-color: var(--main-color);
+  color: var(--light-color);
+  padding: 20px;
+  border-bottom: solid 3px var(--second-color);
+  box-shadow: 0px 3px 8px 0px var(--main-color);
+  border-top: solid 1px var(--second-color-transparent);
+}
+header,
+footer {
+  background-image: url("../images/code-back.png");
+  background-repeat: no-repeat;
+  background-position: right;
+}
+header h1 {
+  margin: 0;
+  line-height: 1;
+  text-shadow: 1px 1px 0px var(--light-color), 3px 3px 0px var(--dark-color);
+}
+main {
+  padding: 10px 2px;
+  flex: 1;
+}
+section {
+  border: solid 2px var(--main-color-transparent);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+section img {
+  box-shadow: 0px 0px 0px 1px var(--second-color),
+    0px 0px 2px 3px var(--main-color);
+}
+
+/*  
+all * content inside class='php' tags
+will be used to make the 
+PHP output inside visualy distinct
+    <div class='php'>
+      <?php
+
+      ?>
+    </div>
+also, dont let these rules
+mess up the lists and tables 
+*/
+#wrapper main .php,
+#wrapper main .php *:not(ul):not(ol):not(table):not(th):not(tr):not(td) {
+  background-color: var(--code-color);
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+/* php output overline */
+#wrapper main .php > *:first-child {
+  border-top: 3px dotted var(--main-color);
+}
+/* php output underline */
+#wrapper main .php > *:last-child {
+  border-bottom: 3px dotted var(--main-color);
+}
+#wrapper main ul,
+#wrapper main ol {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+footer {
+  padding: 20px;
+  background-color: var(--second-color);
+  border-top: solid 2px var(--second-color);
+  box-shadow: 0px -3px 8px 0px var(--main-color);
+  color: var(--main-color);
+  display: flex;
+  justify-content: flex-start;
+  font-weight: bold;
+}
+footer p {
+  font-size: 0.9em;
+  line-height: 0.5em;
+  margin: 0;
+  position: relative;
+  padding-left: 20px;
+}
+/*
+take the standard copyright entity ©
+and flip it on the horizontal axis to 
+fake and make a copyleft symbol
+*/
+footer p span {
+  display: block;
+  transform: scaleX(-1);
+  position: absolute;
+  left: 0px;
+  top: 3px;
+  font-weight: normal;
+  font-size: 1.75em;
+}
+
+/* basic form styles */
+form {
+  border: 1px solid var(--dark-color);
+  padding: 15px;
+  background-color: var(--main-color-transparent);
+  box-shadow: 0px 0px 0px 1px var(--second-color),
+    0px 0px 3px 3px var(--main-color);
+  border-radius: 10px;
+}
+/* use divs to collect <label>s with <input>s */
+form div {
+  margin-bottom: 5px;
+}
+form div input,
+select {
+  border-radius: 5px;
+  padding: 2px 5px;
+  font-weight: bold;
+  color: var(--main-color);
+  display: block;
+  width: 100%;
+}
+input {
+  margin-bottom: 5px;
+}
+form div label {
+  background-color: var(--second-color-transparent);
+  color: var(--main-color);
+  font-weight: bold;
+  border: solid 1px var(--main-color);
+  border-radius: 5px;
+  padding: 2px 5px;
+  margin: 0px 5px;
+  display: block;
+}
+
+fieldset {
+  background-color: var(--main-color-transparent);
+  border: solid 1px var(--main-color);
+  border-radius: 5px;
+  margin: 5px;
+}
+legend {
+  background-color: var(--main-color);
+  border: solid 1px var(--second-color);
+  padding: 0px 5px;
+  border-radius: 5px;
+  color: var(--light-color);
+  font-weight: bold;
+}
+/* form and general button styles */
+button,
+input[type="submit"] {
+  border-radius: 5px;
+  background-color: var(--main-color);
+  color: var(--light-color);
+  border: solid 3px var(--second-color-transparent);
+  font-weight: bold;
+  padding: 5px;
+  margin: 3px;
+}
+button:hover,
+button:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+  border: solid 3px var(--main-color);
+  background-color: var(--second-color);
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+#search-form {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+/* ------ .class Selectors ------ */
+
+.checkbox-group,
+.radio-group {
+  display: block;
+}
+/* some visual highlights for significant content */
+.bad:before,
+.false:before {
+  /* insert thumbs down preamble */
+  content: "\1F44E";
+  margin-right: 5px;
+  text-shadow: 3px 3px 2px var(--bad-color);
+}
+.good:before,
+.true:before {
+  /* insert thumbs up preamble */
+  content: "\1F44D";
+  margin-right: 5px;
+  text-shadow: 3px 3px 2px var(--good-color);
+}
+.warning {
+  /* outline and highlight warnings */
+  padding: 16px;
+  background-color: #ffcece;
+  border-radius: 9px;
+  border: solid 1px var(--bad-color);
+  box-shadow: 0px 0px 0px 4px var(--main-color);
+}
+.warning:before {
+  /* add '!Warning' preamble */
+  content: "\2755 Warning ";
+  font-weight: bold;
+  border: solid 2px var(--bad-color);
+  padding: 5px 2px 2px 2px;
+  margin-right: 4px;
+  border-radius: 5px;
+  background-color: white;
+  color: var(--bad-color);
+}
+.warning:not(.warning-no-script) {
+  margin-bottom: 1em;
+}
+.important {
+  /* outline and highlight important stuff */
+  padding: 16px;
+  background-color: rgba(255, 255, 0, 0.15);
+  border-radius: 9px;
+  border: solid 1px black;
+  box-shadow: 0px 0px 0px 4px var(--main-color);
+}
+.important:before {
+  /* add '!Important' preamble */
+  content: "\2755 Important ";
+  font-weight: bold;
+  border: solid 2px rgb(143, 197, 15);
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  padding: 5px 2px 2px 2px;
+  margin-right: 4px;
+}
+.best-practice {
+  /* outline and highlight best practices */
+  padding: 16px;
+  background-color: rgb(195, 233, 195);
+  border-radius: 9px;
+  border: solid 1px var(--good-color);
+  box-shadow: 0px 0px 0px 4px var(--main-color);
+}
+.best-practice:before {
+  /* add '✔Best Practices' preamble */
+  content: "\2714 Best Practice ";
+  font-weight: bold;
+  border: solid 2px var(--good-color);
+  border-radius: 5px;
+  background-color: white;
+  color: var(--good-color);
+  padding: 5px 2px 2px 2px;
+  margin-right: 4px;
+}
+/*
+.sr-only 
+Use if there is a need to hide elements 
+like form <label>s from displaying on screen,
+but not hide them from screen readers and search engines.
+
+For screen readers only, not for display style taken from
+https://www.accessibility-developer-guide.com/examples/sensible-aria-usage/hidden/
+*/
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------ #id Selectors ------ */
+#wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: var(--light-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 2px 2px var(--second-color);
+}
+
+/* ------ @media queries ------ */
+
+@media (min-width: 400px) {
+  form div {
+    display: flex;
+  }
+  form div input,
+  select {
+    flex: 1;
+  }
+
+  form div label {
+    min-width: 25%;
+  }
+}
+
+@media (min-width: 768px) {
+  #search-form {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+}
+nav a {
+  display: block;
+  padding: 10px;
+  border-bottom: none;
+  border: solid 2px var(--main-color);
+  margin: 3px;
+}
+nav a:hover {
+  background-color: var(--main-color-transparent);
+}
