@@ -301,6 +301,7 @@ footer p span {
   font-size: 1.75em;
 }
 
+
 /* basic form styles */
 form {
   border: 1px solid var(--dark-color);
@@ -377,7 +378,19 @@ input[type="submit"]:focus {
   display: flex;
   flex-direction: column;
 }
+
+#add-student-form {
+  width: 70%;
+}
+
+#add-student-form fieldset{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 /* ------ .class Selectors ------ */
+
+
 
 .checkbox-group,
 .radio-group {
@@ -527,3 +540,4 @@ nav a {
 nav a:hover {
   background-color: var(--main-color-transparent);
 }
+

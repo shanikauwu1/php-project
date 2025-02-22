@@ -20,7 +20,7 @@ require 'session_check.php'; ?>
 </head>
 <body>
 <div id="wrapper">
-    <header> <h3>Assighment 10</h3>
+    <header> <h3>Project PHP</h3>
     <br/>
         <h1>Search Students</h1>
     </header>
