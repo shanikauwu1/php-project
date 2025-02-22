@@ -20,14 +20,14 @@ require 'session_check.php'; ?>
 </head>
 <body>
 <div id="wrapper">
-    <header> <h3>Assighment 10</h3>
+    <header> <h3>This project by Shanika E and Stephanie Hillier</h3>
     <br/>
         <h1>Search Students</h1>
     </header>
     <main>             
     <section>
     <h3>Welcome <?php echo $_SESSION['username'] ?></h3>
-    <ul>
+    <ul class="menu-list">
         <li><a href="students.php">Students</a>  </li>
         <li><a href="logout.php">Logout</a></li>
     </ul>
@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Last Name: <input type="text" name="lastname"></label>
     <button type="submit">Search</button>
 </form>
-<?php if (!empty($search_result)) echo "<p>$search_result</p>"; ?>
+<?php if (!empty($search_result)) echo "<p class='important'>$search_result</p>"; ?>
 
 
 
