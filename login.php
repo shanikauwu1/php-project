@@ -17,7 +17,7 @@
 </head>
 <body>
 <div id="wrapper">
-    <header> <h3>Assighment 10</h3>
+    <header> <h3>This project by Shanika E and Stephanie Hillier</h3>
     <br/>
         <h1>Login</h1>
     </header>
@@ -28,45 +28,57 @@
 session_start();
 require 'config.php';
 
+$error = ""; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $user = trim($_POST['username']);
-    $pass = trim($_POST['password']);
-
-    if (empty($user) || empty($pass)) {
-        $error = "Username and password are required.";
+    // Check if fields exist
+    if (!isset($_POST['username']) || !isset($_POST['password'])) {
+        $error = "Invalid form submission.";
     } else {
+        // Trim and sanitize input
+        $user = trim($_POST['username']);
+        $pass = trim($_POST['password']);
 
-        
-        $stmt = $conn->prepare("SELECT username, password FROM users WHERE username = ?");
-        if (!$stmt) {
-            die("Error preparing statement: " . $conn->error);
-        }
-        $stmt->bind_param("s", $user);
-        $stmt->execute();
-        $stmt->store_result();
-        
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($db_user, $db_pass);
-            $stmt->fetch();
-            
-            if ($pass === $db_pass) { 
-                $_SESSION['username'] = $db_user;
-                $_SESSION['timeout'] = time() + TIMEOUT_IN_SECONDS; 
-                header("Location: students.php");
-                exit();
-            } else {
-                $error = "Invalid password.";
-            }
+        // Validate input
+        if (empty($user) && empty($pass)) {
+            $error = "Username and password are required.";
+        } elseif (empty($user)) {
+            $error = "Username is required.";
+        } elseif (empty($pass)) {
+            $error = "Password is required.";
         } else {
-            $error = "The username was not in our database.";
+            // Prepare SQL query
+            $stmt = $conn->prepare("SELECT username, password FROM users WHERE username = ?");
+            if (!$stmt) {
+                die("Error preparing statement: " . $conn->error);
+            }
+            $stmt->bind_param("s", $user);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if ($stmt->num_rows > 0) {
+                $stmt->bind_result($db_user, $db_pass);
+                $stmt->fetch();
+
+                // Since passwords are NOT hashed, use direct comparison
+                if ($pass === $db_pass) {
+                    $_SESSION['username'] = $db_user;
+                    $_SESSION['timeout'] = time() + TIMEOUT_IN_SECONDS; 
+                    header("Location: students.php");
+                    exit();
+                } else {
+                    $error = "Invalid password.";
+                }
+            } else {
+                $error = "The username was not found in our database.";
+            }
+            $stmt->close();
         }
-        $stmt->close();
     }
 }
 ?>
 
-<?php if (!empty($error)) echo "<p>$error</p>"; ?>
+<?php if (!empty($error)) echo "<p class='important'>$error</p>"; ?>
 <form 	method="POST" 
         action="#">
 
