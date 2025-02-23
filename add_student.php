@@ -98,7 +98,8 @@ $conn->close();
                 <p style="color: green;"><?php echo htmlspecialchars($success_msg); ?></p>
             <?php endif; ?>
 
-            <form method="POST">
+            <form method="POST" id="add-student-form">
+           
                 <label for="id">Student ID:</label>
                 <input type="text" name="id" value="<?php echo htmlspecialchars($id ?? ''); ?>">
                 <br><br>
@@ -112,6 +113,7 @@ $conn->close();
                 <br><br>
 
                 <input type="submit" value="Add Student">
+            
             </form>
         </section>
     </main>

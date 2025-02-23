@@ -55,8 +55,6 @@ if (isset($_GET['delete_id']) && !empty($_GET['delete_id'])) {
     $stmt->close();
 
     if ($student) {
-     //   var_dump($student); 
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
                 $delete_sql = "DELETE FROM students WHERE id = ?";
@@ -72,7 +70,10 @@ if (isset($_GET['delete_id']) && !empty($_GET['delete_id'])) {
                 }
                 $stmt->close();
             } else {
-                echo "<p class='true best-practice'>Deletion canceled.</p>";
+               // echo "<p class='true best-practice'>Deletion canceled.</p>";
+                $_SESSION['success_msg'] = "Deletion canceled!: ". htmlspecialchars($student['id'])." : ". htmlspecialchars($student['firstname'])." ".htmlspecialchars($student['lastname']);
+                header("Location: students.php"); 
+                exit();
             }
         } else {
             echo "<h2>Confirm Deletion</h2>";
