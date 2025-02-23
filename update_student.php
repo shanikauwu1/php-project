@@ -59,7 +59,7 @@ require 'session_check.php';
                     if (empty($new_id) || empty($firstname) || empty($lastname)) {
                         $error_msg = "All fields are required!";
                     }
-                    if (!empty($new_id) && preg_match('/^A00[0-9]{6}$/', $new_id) !== 1) {
+                    elseif (!empty($new_id) && preg_match('/^A00[0-9]{6}$/', $new_id) !== 1) {
                         $error_msg  = "Invalid ID format. The ID should be in the format A00XXXXXX.";
                     }
                 

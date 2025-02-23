@@ -386,9 +386,19 @@ input[type="submit"]:focus {
   flex-direction: column;
 }
 
+#add-student-form {
+  width: 70%;
+}
+
+#add-student-form fieldset {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 .radio-label {
   margin-right: 10px;
 }
+
 /* ------ .class Selectors ------ */
 
 .checkbox-group,
